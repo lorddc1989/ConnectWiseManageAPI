@@ -1,7 +1,7 @@
 function Get-CWMInvoice {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)][Alias('InvoiceID')]$parentId,
+        [int]$invoiceId,
         [int]$id,
         [switch]$count,
         [string]$condition,
@@ -13,7 +13,9 @@ function Get-CWMInvoice {
         [string[]]$fields
     )
 
-    $Endpoint = "/finance/invoices/$($parentId)"   
+    $Endpoint = "/finance/invoices/"
+    
+    if($invoiceId){ $Endpoint = Join-Url $Endpoint $invoiceId }   
 
     return Invoke-CWMGetMaster -Arguments $PsBoundParameters -Endpoint $Endpoint
 }
