@@ -10,7 +10,9 @@ function Get-CWMInvoice {
         [string]$customFieldConditions,
         [int]$page,
         [int]$pageSize,
-        [string[]]$fields
+        [string[]]$fields,
+        [switch]$all
+
     )
 
     $Endpoint = "/finance/invoices/"
